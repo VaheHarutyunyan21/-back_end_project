@@ -10,8 +10,11 @@ exports.registerController =(req, res) => {
     const hashed_password = CryptoJS.SHA256(password).toString();
     let sql = "INSERT INTO users (username,password) VALUES (?, ?)"
     db.run(sql, [username,hashed_password], function(err){
+
           if(err){
-              res.send(JSON.stringify({status: "Error Reigstering"}))
+            console.log(err);
+
+              return res.send(JSON.stringify({status: "Error Reigstering"}))
           }
           res.send(JSON.stringify({status: "User Created"}))
       })  

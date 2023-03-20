@@ -10,8 +10,8 @@ exports.all=(req,res)=> {
 }
 
 exports.dataID=(req, res) => {
-    const id = req.params.id
-    db.get('SELECT * FROM products WHERE id=?', [id], (err, x) => {
+    const id = req.params.products_id
+    db.get('SELECT * FROM products WHERE products_id=?', [id], (err, x) => {
         res.send(x)
     })
    
@@ -30,18 +30,18 @@ exports.posts=(req,res)=> {
 
 
 exports.changId=(req,res)=>{
-    const id = req.params.id;
+    const id = req.params.products_id;
     const name = req.body.name;
     const price = req.body.price;
-    db.run('UPDATE products SET name=?,  price=? WHERE id=?',[name,price,id],(e)=>{
+    db.run('UPDATE products SET name=?,  price=? WHERE products_id=?',[name,price,id],(e)=>{
         res.send('OKKK')
     })
 }
 
 
 exports.deleteId= (req,res) => {
-    const data_id = req.params.id
-    db.run('DELETE FROM products WHERE id=?', [data_id],(e)=>{
+    const data_id = req.params.products_id
+    db.run('DELETE FROM products WHERE products_id=?', [data_id],(e)=>{
         res.send("ok")
     })
 }

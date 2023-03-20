@@ -10,10 +10,10 @@ const products_controller = require('../controller/products_controller')
 
     
 app.get('/products',products_controller.all )
-app.get('/dataProducts/:id', products_controller.dataID)
+app.get('/dataProducts/:products_id', products_controller.dataID)
 app.post('/products', products_controller.posts)
-app.put('/changProducts/:id',products_controller.changId)
-app.delete('/deleteProducts/:id',products_controller.deleteId)
+app.put('/changProducts/:products_id',products_controller.changId)
+app.delete('/deleteProducts/:products_id',products_controller.deleteId)
 
  }
 

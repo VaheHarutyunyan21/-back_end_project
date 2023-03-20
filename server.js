@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const products_routes = require('./routes/products_routes')
 const users_routes = require('./routes/users_routes')
 const users_schema = require('./models/users_schema')
+const cart_schema = require('./models/cart_schema')
 const products_schema = require('./models/products_schema')
 const auth_routes = require('./routes/auth_routes')
 
@@ -29,8 +30,10 @@ products_routes.create_products_routes(app)
 users_routes.create_users_routes(app)
 users_schema.create_users(db)
 products_schema.create_products(db)
+cart_schema.create_cart(db)
 auth_routes.register_routes(app)
 auth_routes.login_routes(app)
+
 
 
 

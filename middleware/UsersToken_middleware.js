@@ -8,11 +8,12 @@ exports.usersMidlweare=(req, res, next)=> {
         return res.sendStatus(401)
       }
       const decodedTocen=jwt.verify(token,SECRET);
+      //console.log(decodedTocen)
       jwt.verify(token, SECRET, (err, user) => {
         if (err) {
           return (res.sendStatus(403))
         }
-       if (decodedTocen.isAdmin!=1 && decodedTocen.id!=req.params.id ) {
+       if (decodedTocen.isAdmin!=1 && decodedTocen.users_id!=req.params.users_id ) {
         return (res.sendStatus(403))
        }
       

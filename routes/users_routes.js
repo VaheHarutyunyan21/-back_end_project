@@ -10,8 +10,8 @@ const usersToken=require("../middleware/UsersToken_middleware")
 
     
 app.get('/users',adminToken.authMidlweare,users_controller.all )
-app.get('/dataUsers/:id',usersToken.usersMidlweare, users_controller.dataID)
-app.delete('/deleteUsers/:id',usersToken.usersMidlweare, users_controller.deleteId)
+app.get('/dataUsers/:users_id',usersToken.usersMidlweare, users_controller.dataID)
+app.delete('/deleteUsers/:users_id',usersToken.usersMidlweare, users_controller.deleteId)
 
  }
 
