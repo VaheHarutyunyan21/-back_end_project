@@ -2,9 +2,10 @@ const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('database.db')
 const CryptoJS =require('crypto-js')
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
  
-
-const SECRET = "dfghjk"
+const SECRET = process.env.SECRET;
+ 
 
 function generateAccessToken(users_id,username,isAdmin) {
   return jwt.sign({users_id,username,isAdmin},SECRET, { expiresIn: '1h' });
