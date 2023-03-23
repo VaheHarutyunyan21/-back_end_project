@@ -1,6 +1,10 @@
 const sqlite = require('sqlite3').verbose()
 const db = new sqlite.Database('database.db')
 const cart_controller = require('../controller/cart_controller')
+const adminToken= require("../middleware/authenticateToken_middleware")
+const usersAdminToken=require("../middleware/Users&AdminToken_middleware")
+const usersToken=require("../middleware/UsersToken_middleware")
+
 
 
 
@@ -9,11 +13,10 @@ const cart_controller = require('../controller/cart_controller')
 
 
     
-app.get('/cart',cart_controller.all )
-app.get('/dataCart/:id', cart_controller.dataID)
-app.post('/cart', cart_controller.posts)
-app.put('/changCart/:id',cart_controller.changId)
-app.delete('/deleteCart/:id',cart_controller.deleteId)
+app.get('/cart',adminToken.authMidlweare,cart_controller.all )
+app.get('/dataCart/:users_id',usersAdminToken.usersAdminMidlweare, cart_controller.dataID)
+app.post('/cart',usersToken.usersMidlweare, cart_controller.posts)
+app.delete('/deleteCart/:users_id',usersToken.usersMidlweare, cart_controller.deleteId)
 
  }
 

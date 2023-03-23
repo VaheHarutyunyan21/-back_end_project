@@ -18,15 +18,11 @@ exports.loginController=(req, res) => {
      const hashed_password = CryptoJS.SHA256(password).toString();
     let sql = "SELECT * from users WHERE username = ?"
     db.get(sql,[username], function(err, row){  
-         console.log(row)  
-      if(username == row.username && hashed_password == row.password) {
-       
-        let token = generateAccessToken(row.users_id,row.username,row.isAdmin)
-
-         res.json({token})
-          //res.send(JSON.stringify({status: "Logged in"}));
+      if(username != row.username && hashed_password != row.password) {
+        return (res.sendStatus(403)) 
       }else {
-          res.send(JSON.stringify({status: "Wrong credentials"}));
+          let token = generateAccessToken(row.users_id,row.username,row.isAdmin)
+           res.send(JSON.stringify({status:"Logged in",jwt:token}));
       }
 
     }) 

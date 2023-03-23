@@ -10,7 +10,6 @@ exports.registerController =(req, res) => {
     const hashed_password = CryptoJS.SHA256(password).toString();
     let sql = "INSERT INTO users (username,password) VALUES (?, ?)"
     db.run(sql, [username,hashed_password], function(err){
-
           if(err){
             console.log(err);
 
